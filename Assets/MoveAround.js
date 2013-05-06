@@ -6,8 +6,22 @@ var rotateSpeed:float = 3.0f;
 var moveJoystick:Joystick;
 var rotateJoystick:Joystick;
 
+var originalPosition:Vector3;
+var originalRotation:Quaternion;
+
+function resetGame()
+{
+	// reset to original position.
+	transform.position = originalPosition;
+	transform.rotation = originalRotation;
+}
+
 function Update () 
 {
+	if (GameController != null && !GameController.gameRunning)
+	{
+		return;
+	}
 	// gets a handle to the Character Controller component
 	var controller:CharacterController = GetComponent(CharacterController);
 	
